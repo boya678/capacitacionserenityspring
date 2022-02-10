@@ -1,6 +1,11 @@
 package starter.models;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
+
+@Table("persona")
 public class Persona {
+    @Id
     private Long id;
     private String nombre;
     private String apellido;

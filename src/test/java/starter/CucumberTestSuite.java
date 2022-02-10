@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 @CucumberOptions(
         plugin = {"pretty"},
-        features = "src/test/resources/features"
+        features = "src/test/resources/features",
+        dryRun = true,
+        snippets = CucumberOptions.SnippetType.CAMELCASE
 )
 public class CucumberTestSuite {}

@@ -1,6 +1,7 @@
 package starter.stepdefinitions;
 
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.ensure.Ensure;
@@ -22,9 +23,15 @@ public class ClienteStepDefinition {
     public void theUserShouldSeeTheSameDataInDb(Actor actor, List<Persona> personas) {
         actor.attemptsTo();
         System.out.println(personas.get(0).toString());
-         Persona persona = personaRepository.findById(personas.get(0).getId()).get();
+         Persona persona = personaRepository.findByIdCustom(personas.get(0).getId());
         actor.attemptsTo(Ensure.that(personas.get(0).getApellido()).isEqualTo(persona.getApellido()));
     }
+
+    @When("{actor} insert the data in db")
+    public void theUserInsertTheDataInDb(Actor actor, List<Persona> personas) {
+        personaRepository.saveAll(personas);
+    }
+
 
 
 

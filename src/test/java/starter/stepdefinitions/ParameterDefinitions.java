@@ -15,9 +15,9 @@ public class ParameterDefinitions {
         return OnStage.theActorCalled(actorName);
     }
 
-    @DataTableType
+    @DataTableType(replaceWithEmptyString = "[Blank]")
     public Persona personaTransformer(Map<String,String> data){
-        return new Persona(data.get("id")==null?null:Long.valueOf(data.get("id")),data.get("nombre"),data.get("apellido"),data.get("direccion"),data.get("telefono"));
+        return new Persona(data.get("id")==null?null:Integer.valueOf(data.get("id")),data.get("nombre"),data.get("apellido"),data.get("direccion"),data.get("telefono"));
 
     }
 }

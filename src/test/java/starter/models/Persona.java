@@ -1,12 +1,15 @@
 package starter.models;
 
+import io.cucumber.java.sl.In;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.domain.Persistable;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("persona")
-public class Persona {
+public class Persona implements Persistable{
     @Id
-    private Long id;
+    private Integer id;
     private String nombre;
     private String apellido;
     private String direccion;
@@ -14,7 +17,7 @@ public class Persona {
 
     public Persona(){}
 
-    public Persona(Long id, String nombre, String apellido, String direccion, String telefono) {
+    public Persona(Integer id, String nombre, String apellido, String direccion, String telefono) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -22,11 +25,16 @@ public class Persona {
         this.telefono = telefono;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    @Override
+    public boolean isNew() {
+        return true;
+    }
+
+    public void setId(Integer id) {
         this.id = id;
     }
 
